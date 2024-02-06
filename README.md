@@ -36,5 +36,4 @@ To run the project in your local environment, follow these steps:
 ## 🍿 Video
 
 https://github.com/Sree0211/Wind-Turbine-Generation/asse# 
-[README.md](https://github.com/Sree0211/Wind-Turbine-Generation/files/14185215/README.md)
 
