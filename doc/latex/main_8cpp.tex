@@ -1,0 +1,203 @@
+\doxysection{src/main.cpp File Reference}
+\hypertarget{main_8cpp}{}\label{main_8cpp}\index{src/main.cpp@{src/main.cpp}}
+
+
+Wind Turbine Simulation.  
+
+
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$cmath$>$}\newline
+{\ttfamily \#include $<$GL/glut.\+h$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$chrono$>$}\newline
+{\ttfamily \#include $<$thread$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ float $>$ \mbox{\hyperlink{main_8cpp_a671a6657ba0ace63bd4151ce744182e9}{read\+Speed\+From\+File}} ()
+\begin{DoxyCompactList}\small\item\em Read the Speed data from file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8cpp_accd03d0ab10d5efc1f80a091da7e97a1}{update}} (int value)
+\begin{DoxyCompactList}\small\item\em Update function for blade rotation. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8cpp_aef8fe7cbbb3ddc24cc91b80e1296f20e}{draw\+Filled\+Circle}} (float cx, float cy, float r, int num\+\_\+segments)
+\begin{DoxyCompactList}\small\item\em Function to draw a filled circle. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8cpp_a0bbe031ef141aef75982961907f780f1}{draw\+Turbine\+Structure}} ()
+\begin{DoxyCompactList}\small\item\em Function to develop the structure of the turbine. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8cpp_a1e5b20fed15743656bb6d2e6a6ea6269}{display}} ()
+\begin{DoxyCompactList}\small\item\em Display callback function. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8cpp_aef7ba2f69afb2d954545f64c7fe24b14}{keyboard}} (unsigned char key, int x, int y)
+\begin{DoxyCompactList}\small\item\em Keyboard callback function. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{main_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}argv)
+\begin{DoxyCompactList}\small\item\em Main function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{main_8cpp_a5273fc9220a450f7a013692079410ede}\label{main_8cpp_a5273fc9220a450f7a013692079410ede} 
+float {\bfseries blade\+Rotation\+Angle} = 0.\+0f
+\begin{DoxyCompactList}\small\item\em Initial rotation angle. \end{DoxyCompactList}\item 
+\Hypertarget{main_8cpp_a8b41910066b877c9effd739880b6b15e}\label{main_8cpp_a8b41910066b877c9effd739880b6b15e} 
+int {\bfseries current\+Index} = 0
+\begin{DoxyCompactList}\small\item\em Index to get the speed from the file. \end{DoxyCompactList}\item 
+\Hypertarget{main_8cpp_a0e0e714e4b5e024809a0b35a8074fd12}\label{main_8cpp_a0e0e714e4b5e024809a0b35a8074fd12} 
+std\+::vector$<$ float $>$ {\bfseries Speed\+Data} = \mbox{\hyperlink{main_8cpp_a671a6657ba0ace63bd4151ce744182e9}{read\+Speed\+From\+File}}()
+\begin{DoxyCompactList}\small\item\em Array to store the speed data from the file. \end{DoxyCompactList}\item 
+\Hypertarget{main_8cpp_acb559820d9ca11295b4500f179ef6392}\label{main_8cpp_acb559820d9ca11295b4500f179ef6392} 
+int {\bfseries i} = 1
+\begin{DoxyCompactList}\small\item\em Index to denote Speed update. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Wind Turbine Simulation. 
+
+\begin{DoxyAuthor}{Author}
+Sreenath Swaminathan 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+03.\+02.\+2023 
+\end{DoxyDate}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{main_8cpp_a1e5b20fed15743656bb6d2e6a6ea6269}\label{main_8cpp_a1e5b20fed15743656bb6d2e6a6ea6269} 
+\index{main.cpp@{main.cpp}!display@{display}}
+\index{display@{display}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{display()}{display()}}
+{\footnotesize\ttfamily void display (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Display callback function. 
+
+This function is performs the rendering of the wind turbine. \texorpdfstring{$<$}{<} Applying transformations and render the turbine structure\Hypertarget{main_8cpp_aef8fe7cbbb3ddc24cc91b80e1296f20e}\label{main_8cpp_aef8fe7cbbb3ddc24cc91b80e1296f20e} 
+\index{main.cpp@{main.cpp}!drawFilledCircle@{drawFilledCircle}}
+\index{drawFilledCircle@{drawFilledCircle}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{drawFilledCircle()}{drawFilledCircle()}}
+{\footnotesize\ttfamily void draw\+Filled\+Circle (\begin{DoxyParamCaption}\item[{float}]{cx,  }\item[{float}]{cy,  }\item[{float}]{r,  }\item[{int}]{num\+\_\+segments }\end{DoxyParamCaption})}
+
+
+
+Function to draw a filled circle. 
+
+This function draws a filled circle using GL\+\_\+\+TRIANGLE\+\_\+\+FAN.
+
+
+\begin{DoxyParams}{Parameters}
+{\em cx} & X-\/coordinate of the center \\
+\hline
+{\em cy} & Y-\/coordinate of the center \\
+\hline
+{\em r} & Radius of the circle \\
+\hline
+{\em num\+\_\+segments} & Number of segments for circle approximation \\
+\hline
+\end{DoxyParams}
+\Hypertarget{main_8cpp_a0bbe031ef141aef75982961907f780f1}\label{main_8cpp_a0bbe031ef141aef75982961907f780f1} 
+\index{main.cpp@{main.cpp}!drawTurbineStructure@{drawTurbineStructure}}
+\index{drawTurbineStructure@{drawTurbineStructure}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{drawTurbineStructure()}{drawTurbineStructure()}}
+{\footnotesize\ttfamily void draw\+Turbine\+Structure (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Function to develop the structure of the turbine. 
+
+This function creates the required structure to represent the Wind\+Turbine This includes a Pole as its base A ciruclar structure and blades rotating about the center of that circle. \texorpdfstring{$<$}{<} Pole like structure
+
+\texorpdfstring{$<$}{<} Circle in the middle
+
+\texorpdfstring{$<$}{<} Rotating the object around the circle
+
+\texorpdfstring{$<$}{<} Blade 1 -\/ Each blade is separated by almost 120 degrees
+
+\texorpdfstring{$<$}{<} Blade 2
+
+\texorpdfstring{$<$}{<} Blade 3\Hypertarget{main_8cpp_aef7ba2f69afb2d954545f64c7fe24b14}\label{main_8cpp_aef7ba2f69afb2d954545f64c7fe24b14} 
+\index{main.cpp@{main.cpp}!keyboard@{keyboard}}
+\index{keyboard@{keyboard}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{keyboard()}{keyboard()}}
+{\footnotesize\ttfamily void keyboard (\begin{DoxyParamCaption}\item[{unsigned char}]{key,  }\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+
+
+Keyboard callback function. 
+
+This function handles keyboard input.
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & ASCII code of the pressed key \\
+\hline
+{\em x} & X-\/coordinate of the mouse when key was pressed \\
+\hline
+{\em y} & Y-\/coordinate of the mouse when key was pressed \\
+\hline
+\end{DoxyParams}
+\texorpdfstring{$<$}{<} Handle keyboard input\Hypertarget{main_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}\label{main_8cpp_a3c04138a5bfe5d72780bb7e82a18e627} 
+\index{main.cpp@{main.cpp}!main@{main}}
+\index{main@{main}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{argv }\end{DoxyParamCaption})}
+
+
+
+Main function. 
+
+Entry point of the program.
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & Number of command-\/line arguments \\
+\hline
+{\em argv} & Command-\/line argument values \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int Exit status 
+\end{DoxyReturn}
+Set up the viewport, projection, etc.
+
+Register the display and reshape callback functions
+
+Function to display the Wind turbine
+
+Register the keyboard callback function\Hypertarget{main_8cpp_a671a6657ba0ace63bd4151ce744182e9}\label{main_8cpp_a671a6657ba0ace63bd4151ce744182e9} 
+\index{main.cpp@{main.cpp}!readSpeedFromFile@{readSpeedFromFile}}
+\index{readSpeedFromFile@{readSpeedFromFile}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{readSpeedFromFile()}{readSpeedFromFile()}}
+{\footnotesize\ttfamily std\+::vector$<$ float $>$ read\+Speed\+From\+File (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Read the Speed data from file. 
+
+This function captures the speed data from 1 (Min) to 10 (Max) speed at which the turbine blades are to be rotated \begin{DoxyReturn}{Returns}
+std\+::vector$<$float$>$ Array containing speed data 
+\end{DoxyReturn}
+\texorpdfstring{$<$}{<} Extract the speed value as a string
+
+\texorpdfstring{$<$}{<} Convert the speed value to a float\Hypertarget{main_8cpp_accd03d0ab10d5efc1f80a091da7e97a1}\label{main_8cpp_accd03d0ab10d5efc1f80a091da7e97a1} 
+\index{main.cpp@{main.cpp}!update@{update}}
+\index{update@{update}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void update (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Update function for blade rotation. 
+
+This function updates the rotation angle of turbine blades based on the speed from the file. Speed is modified almost every 5 seconds.
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & Timer value \\
+\hline
+\end{DoxyParams}
+\texorpdfstring{$<$}{<} Updating the rotation speed
+
+\texorpdfstring{$<$}{<} Speed will be modified for every 5 secs in this case
+
+\texorpdfstring{$<$}{<} Schedule the next update
+
+\texorpdfstring{$<$}{<} Update function Progresses every millisecond
+
+\texorpdfstring{$<$}{<} Block that increments the speed after every 5 seconds
